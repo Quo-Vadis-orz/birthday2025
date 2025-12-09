@@ -162,15 +162,15 @@
             border-bottom-right-radius: 10px; border-top-left-radius: 16px;
         }
 
-        /* --- 🧭 底部导航栏 --- */
+        /* --- 🧭 底部导航栏 (修改版) --- */
         .nav-bar {
             position: fixed;
             bottom: 0; left: 0; width: 100%;
             height: 80px;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.95); /* 背景稍微不透明一点，防干扰 */
             backdrop-filter: blur(20px);
-            display: flex;m
-            justify-content: space-around;
+            display: flex;
+            /* justify-content: space-around;  <-- 这行删掉或注释掉，不需要了 */
             align-items: center;
             padding-bottom: env(safe-area-inset-bottom);
             box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
@@ -178,18 +178,32 @@
         }
 
         .nav-item {
+            flex: 1; /* ✨ 关键修改：让每个图标自动撑满剩余空间，实现50/50平分 */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            color: #999;
-            font-size: 10px;
+            justify-content: center; /* 垂直居中 */
+            align-items: center;     /* 水平居中 */
+            height: 100%;            /* 撑满高度，增加点击区域 */
+            color: #ccc;             /* 默认颜色淡一点，显高级 */
+            font-size: 11px;
             gap: 4px;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            cursor: pointer;
         }
 
-        .nav-icon { font-size: 24px; transition: transform 0.2s; }
-        .nav-item.active { color: var(--primary-dark); }
-        .nav-item.active .nav-icon { transform: scale(1.1); }
+        .nav-icon { 
+            font-size: 26px; 
+            transition: transform 0.2s; 
+            margin-bottom: 2px;
+        }
+        
+        /* 激活状态 */
+        .nav-item.active { 
+            color: var(--primary-dark); 
+        }
+        .nav-item.active .nav-icon { 
+            transform: scale(1.1) translateY(-2px); /* 激活时稍微上浮一点 */
+        }
 
         /* --- 🎉 弹窗与特效 --- */
         #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 200; }
@@ -288,7 +302,7 @@
         </div>
         <div class="couple-photo-box">
             <!-- src="us1.jpg" 照片 -->
-            <img src="us2.jpg" class="couple-img" alt="我们" onclick="showModal('爱你哟', '不管变成什么样子，我都最喜欢你啦！', '🥰')">
+            <img src="us1.jpg" class="couple-img" alt="我们" onclick="showModal('爱你哟', '不管变成什么样子，我都最喜欢你啦！', '🥰')">
             <div class="photo-caption">❤️ 陪伴是最长情的告白 ❤️</div>
         </div>
     </div>
